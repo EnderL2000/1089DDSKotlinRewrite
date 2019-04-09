@@ -9,7 +9,6 @@ package frc.robot.commands.drivetrain;
 
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrain.DriveTrainSide;
 import frc.robot.util.MercMath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +34,7 @@ public class DegreeRotate extends MoveHeading {
     protected void initialize() {
         super.initialize();
 
-        Robot.driveTrain.configPIDSlots(DriveTrainSide.RIGHT, DriveTrain.DRIVE_PID_SLOT, DriveTrain.DRIVE_SMOOTH_TURN_SLOT);
+        Robot.driveTrain.configPIDSlots(DriveTrain.DriveTrainSide.RIGHT, DriveTrain.DRIVE_PID_SLOT, DriveTrain.DRIVE_SMOOTH_TURN_SLOT);
         LOG.info(getName() + " Initialized");
     }
 

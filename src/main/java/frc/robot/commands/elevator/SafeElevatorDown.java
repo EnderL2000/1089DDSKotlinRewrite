@@ -1,10 +1,9 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.cargo.ArticulateMouth;
-import frc.robot.subsystems.Elevator.ElevatorPosition;
-import frc.robot.subsystems.MouthArticulator.MouthPosition;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.MouthArticulator;
+import frc.robot.commands.cargo.ArticulateMouth;
 
 /**
  * It has been determined the elevator is moving down and may collide with the cargo intake.
@@ -12,10 +11,10 @@ import frc.robot.subsystems.MouthArticulator;
  */
 public class SafeElevatorDown extends CommandGroup {
 
-    public SafeElevatorDown(ElevatorPosition targetPosition) {
-        addParallel(new AutomaticElevator(ElevatorPosition.ROCKET_1_C, true));
-        addSequential(new ArticulateMouth(MouthPosition.OUT));
+    public SafeElevatorDown(Elevator.ElevatorPosition targetPosition) {
+        addParallel(new AutomaticElevator(Elevator.ElevatorPosition.ROCKET_1_C, true));
+        addSequential(new ArticulateMouth(MouthArticulator.MouthPosition.OUT));
         addSequential(new AutomaticElevator(targetPosition, true));
-        addSequential(new ArticulateMouth(MouthPosition.IN));
+        addSequential(new ArticulateMouth(MouthArticulator.MouthPosition.IN));
     }
 }

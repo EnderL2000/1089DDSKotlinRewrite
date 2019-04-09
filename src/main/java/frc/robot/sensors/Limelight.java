@@ -3,7 +3,7 @@ package frc.robot.sensors;
 import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import frc.robot.subsystems.LimelightAssembly.LimelightPosition;
+import frc.robot.subsystems.LimelightAssembly;
 
 /**
  * A wrapper class for limelight information from the network table.
@@ -247,7 +247,7 @@ public class Limelight implements PIDSource, TableEntryListener {
         nt.getEntry("ledMode").setNumber(limelightLEDState.value);
     }
 
-    public void setPipeline(LimelightPosition position) {
+    public void setPipeline(LimelightAssembly.LimelightPosition position) {
         nt.getEntry("pipeline").setNumber(position.pipeline);
     }
 

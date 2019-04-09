@@ -3,7 +3,7 @@ package frc.robot.commands.drivetrain;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap.DS_USB;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.util.DriveAssist;
 import org.apache.logging.log4j.LogManager;
@@ -42,10 +42,10 @@ public class DriveWithJoysticks extends Command {
         if (tDrive != null) {
             switch (driveType) {
                 case TANK:
-                    tDrive.tankDrive(Robot.oi.getJoystickY(DS_USB.LEFT_STICK), Robot.oi.getJoystickY(DS_USB.RIGHT_STICK));
+                    tDrive.tankDrive(Robot.oi.getJoystickY(RobotMap.DS_USB.LEFT_STICK), Robot.oi.getJoystickY(RobotMap.DS_USB.RIGHT_STICK));
                     break;
                 case ARCADE:
-                    tDrive.arcadeDrive(-Robot.oi.getJoystickY(DS_USB.LEFT_STICK), Robot.oi.getJoystickX(DS_USB.RIGHT_STICK), true);
+                    tDrive.arcadeDrive(-Robot.oi.getJoystickY(RobotMap.DS_USB.LEFT_STICK), Robot.oi.getJoystickX(RobotMap.DS_USB.RIGHT_STICK), true);
                     break;
             }
         } else {

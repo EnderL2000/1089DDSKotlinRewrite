@@ -3,7 +3,6 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Elevator.ElevatorPosition;
 import frc.robot.util.DelayableLogger;
 import frc.robot.util.interfaces.IMercMotorController;
 import org.apache.logging.log4j.LogManager;
@@ -20,11 +19,11 @@ public class AutomaticElevator extends Command {
     private final DelayableLogger SLOW_LOG = new DelayableLogger(LOG, 1, TimeUnit.SECONDS);
     private final int ELEVATOR_THRESHOLD = 3000;
 
-    private ElevatorPosition targetPos;
+    private Elevator.ElevatorPosition targetPos;
 
     private boolean endable;
 
-    public AutomaticElevator(ElevatorPosition pos) {
+    public AutomaticElevator(Elevator.ElevatorPosition pos) {
         requires(Robot.elevator);
         targetPos = pos;
         endable = false;
@@ -33,7 +32,7 @@ public class AutomaticElevator extends Command {
         LOG.info(getName() + " Constructed");
     }
 
-    public AutomaticElevator(ElevatorPosition pos, boolean endable) {
+    public AutomaticElevator(Elevator.ElevatorPosition pos, boolean endable) {
         this(pos);
         this.endable = endable;
     }

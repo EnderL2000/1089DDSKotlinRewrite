@@ -9,15 +9,15 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.util.DriveAssist.DriveDirection;
+import frc.robot.util.DriveAssist;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SwitchDrive extends Command {
     private final Logger LOG = LogManager.getLogger(SwitchDrive.class);
-    private DriveDirection dd;
+    private DriveAssist.DriveDirection dd;
 
-    public SwitchDrive(DriveDirection driveDir) {
+    public SwitchDrive(DriveAssist.DriveDirection driveDir) {
         dd = driveDir;
         setName("SwitchDrive Command");
         LOG.info(getName() + " Constructed");

@@ -2,12 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.util.DriveAssist;
 import frc.robot.auton.AutonMove;
 import frc.robot.commands.drivetrain.SwitchDriveDirection;
 import frc.robot.sensors.Limelight.LimelightLEDState;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.DriveTrain.DriveTrainLayout;
-import frc.robot.util.DriveAssist.DriveDirection;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -94,7 +94,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         limelightAssembly.getLimeLight().setLEDState(LimelightLEDState.ON);
-        (new SwitchDriveDirection(DriveDirection.HATCH)).start();
+        (new SwitchDriveDirection(DriveAssist.DriveDirection.HATCH)).start();
     }
 
     @Override

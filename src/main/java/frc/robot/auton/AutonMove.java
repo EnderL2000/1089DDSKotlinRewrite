@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.drivetrain.DegreeRotate;
 import frc.robot.commands.drivetrain.MoveOnPath;
-import frc.robot.commands.drivetrain.MoveOnPath.MPDirection;
 import frc.robot.commands.drivetrain.SwitchDriveDirection;
-import frc.robot.util.DriveAssist.DriveDirection;
+import frc.robot.util.DriveAssist;
 
 import java.io.FileNotFoundException;
 
@@ -26,7 +25,7 @@ public class AutonMove extends CommandGroup {
         this(pathname, Robot.driveTrain.getDirection());
     }
 
-    public AutonMove(String pathname, DriveDirection driveDirection) {
+    public AutonMove(String pathname, DriveAssist.DriveDirection driveDirection) {
         MoveOnPath mop = null;
 
         try {
@@ -43,7 +42,7 @@ public class AutonMove extends CommandGroup {
 
         if (mop.getFilename().indexOf("Station") > 0) {
             try {
-                addSequential(new MoveOnPath(mop.getFilename(), MPDirection.BACKWARD));
+                addSequential(new MoveOnPath(mop.getFilename(), MoveOnPath.MPDirection.BACKWARD));
             } catch (FileNotFoundException fnfe) {
                 System.out.println("Not a file!");
                 fnfe.printStackTrace();

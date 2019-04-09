@@ -2,10 +2,10 @@ package frc.robot.commands.conditionals;
 
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 import frc.robot.Robot;
+import frc.robot.subsystems.ClawAndIntake;
+import frc.robot.util.DriveAssist;
 import frc.robot.commands.cargo.RunClaw;
 import frc.robot.commands.hatchpanel.RunStinger;
-import frc.robot.subsystems.ClawAndIntake;
-import frc.robot.util.DriveAssist.DriveDirection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +25,6 @@ public class GeneralEject extends ConditionalCommand {
 
     @Override
     public boolean condition() {
-        return Robot.driveTrain.getDirection() == DriveDirection.HATCH;
+        return Robot.driveTrain.getDirection() == DriveAssist.DriveDirection.HATCH;
     }
 }

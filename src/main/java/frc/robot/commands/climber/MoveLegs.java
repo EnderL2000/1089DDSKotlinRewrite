@@ -2,16 +2,16 @@ package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Legs.LegsPosition;
+import frc.robot.subsystems.Legs;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class MoveLegs extends Command {
   private final Logger LOG = LogManager.getLogger(MoveLegs.class);
-  private LegsPosition position; 
+  private Legs.LegsPosition position;
 
-  public MoveLegs(LegsPosition position) {
+  public MoveLegs(Legs.LegsPosition position) {
     requires(Robot.legs);
     setName("ActuateFangs Command");
     LOG.info(getName() + " Constructed");

@@ -2,7 +2,7 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap.GAMEPAD_AXIS;
+import frc.robot.RobotMap;
 import frc.robot.util.MercMath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +27,7 @@ public class ManualElevator extends Command {
 
     @Override
     protected void execute() {
-        Robot.elevator.getElevatorLeader().setSpeed(MercMath.applyDeadzone(Robot.oi.getGamepadAxis(GAMEPAD_AXIS.rightY), 0.1));
+        Robot.elevator.getElevatorLeader().setSpeed(MercMath.applyDeadzone(Robot.oi.getGamepadAxis(RobotMap.GAMEPAD_AXIS.rightY), 0.1));
     }
 
     @Override

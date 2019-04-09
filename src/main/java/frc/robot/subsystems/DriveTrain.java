@@ -8,13 +8,11 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.CAN;
 import frc.robot.commands.drivetrain.DriveWithJoysticks;
 import frc.robot.sensors.LIDAR;
 import frc.robot.sensors.LIDAR.PWMOffset;
 import frc.robot.sensors.Ultrasonic;
 import frc.robot.util.*;
-import frc.robot.util.DriveAssist.DriveDirection;
 import frc.robot.util.interfaces.IMercMotorController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -72,10 +70,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
         this.layout = layout;
         switch (layout) {
             case LEGACY:
-                leaderLeft = new MercTalonSRX(CAN.DRIVETRAIN_ML);
-                leaderRight = new MercTalonSRX(CAN.DRIVETRAIN_MR);
-                followerLeft = new MercTalonSRX(CAN.DRIVETRAIN_SL);
-                followerRight = new MercTalonSRX(CAN.DRIVETRAIN_SR);
+                leaderLeft = new MercTalonSRX(RobotMap.CAN.DRIVETRAIN_ML);
+                leaderRight = new MercTalonSRX(RobotMap.CAN.DRIVETRAIN_MR);
+                followerLeft = new MercTalonSRX(RobotMap.CAN.DRIVETRAIN_SL);
+                followerRight = new MercTalonSRX(RobotMap.CAN.DRIVETRAIN_SR);
                 break;/*
             case SPARKS:
                 leaderLeft = new MercSparkMax(CAN.DRIVETRAIN_ML);
@@ -84,15 +82,15 @@ public class DriveTrain extends Subsystem implements PIDOutput {
                 followerRight = new MercSparkMax(CAN.DRIVETRAIN_SR);
                 break;*/
             case TALONS:
-                leaderLeft = new MercTalonSRX(CAN.DRIVETRAIN_ML);
-                leaderRight = new MercTalonSRX(CAN.DRIVETRAIN_MR);
-                followerLeft = new MercVictorSPX(CAN.DRIVETRAIN_SL);
-                followerRight = new MercVictorSPX(CAN.DRIVETRAIN_SR);
+                leaderLeft = new MercTalonSRX(RobotMap.CAN.DRIVETRAIN_ML);
+                leaderRight = new MercTalonSRX(RobotMap.CAN.DRIVETRAIN_MR);
+                followerLeft = new MercVictorSPX(RobotMap.CAN.DRIVETRAIN_SL);
+                followerRight = new MercVictorSPX(RobotMap.CAN.DRIVETRAIN_SR);
                 break;
         }
 
         //Initialize podgeboi
-        podgeboi = new PigeonIMU(CAN.PIGEON);
+        podgeboi = new PigeonIMU(RobotMap.CAN.PIGEON);
         podgeboi.configFactoryDefault();
 
         //CANifier and distance sensors
@@ -133,7 +131,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
         resetEncoders();
 
-        driveAssist = new DriveAssist(leaderLeft, leaderRight, DriveDirection.HATCH);
+        driveAssist = new DriveAssist(leaderLeft, leaderRight, DriveAssist.DriveDirection.HATCH);
 
         // Set follower control on back talons. Use follow() instead of ControlMode.Follower so that Talons can follow Victors and vice versa.
         followerLeft.follow(leaderLeft);
@@ -284,11 +282,11 @@ public class DriveTrain extends Subsystem implements PIDOutput {
         leaderRight.configVoltage(nominalOutput, peakOutput);
     }
 
-    public DriveDirection getDirection() {
+    public DriveAssist.DriveDirection getDirection() {
         return driveAssist.getDirection();
     }
 
-    public void setDirection(DriveDirection dd) {
+    public void setDirection(DriveAssist.DriveDirection dd) {
         driveAssist.setDirection(dd);
     }
 

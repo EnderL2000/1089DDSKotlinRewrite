@@ -8,12 +8,12 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
+import frc.robot.util.DriveAssist;
 import frc.robot.commands.limelight.SetLED;
 import frc.robot.sensors.Limelight.LimelightLEDState;
-import frc.robot.util.DriveAssist.DriveDirection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import frc.robot.Robot;
 
 public class SwitchDriveDirection extends CommandGroup {
     private final Logger LOG = LogManager.getLogger(SwitchDriveDirection.class);
@@ -21,11 +21,11 @@ public class SwitchDriveDirection extends CommandGroup {
     /**
      * Add your docs here.
      */
-    public SwitchDriveDirection(DriveDirection driveDir) {
+    public SwitchDriveDirection(DriveAssist.DriveDirection driveDir) {
 
         //addParallel(new SwitchDrive(driveDir));
         Robot.driveTrain.setDirection(driveDir);
-        addSequential(new SetLED(driveDir == DriveDirection.HATCH ?
+        addSequential(new SetLED(driveDir == DriveAssist.DriveDirection.HATCH ?
                 LimelightLEDState.ON : LimelightLEDState.OFF));
 
         setName("SwitchDriveDirection CommandGroup");

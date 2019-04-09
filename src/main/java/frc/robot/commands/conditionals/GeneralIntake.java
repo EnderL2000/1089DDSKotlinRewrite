@@ -2,8 +2,8 @@ package frc.robot.commands.conditionals;
 
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 import frc.robot.Robot;
+import frc.robot.util.DriveAssist;
 import frc.robot.commands.cargo.IntakeCargo;
-import frc.robot.util.DriveAssist.DriveDirection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,6 +23,6 @@ public class GeneralIntake extends ConditionalCommand {
 
     @Override
     public boolean condition() {
-        return Robot.driveTrain.getDirection() == DriveDirection.CARGO;
+        return Robot.driveTrain.getDirection() == DriveAssist.DriveDirection.CARGO;
     }
 }

@@ -8,10 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap.CAN;
-import frc.robot.commands.elevator.ManualElevator;
-import frc.robot.commands.hatchpanel.ManualStingerControl;
-import frc.robot.commands.hatchpanel.RunStinger;
+import frc.robot.RobotMap;
 import frc.robot.util.MercTalonSRX;
 import frc.robot.util.PIDGain;
 import frc.robot.util.interfaces.IMercMotorController;
@@ -31,7 +28,7 @@ public class Stinger extends Subsystem {
     private StingerState state;
 
     public Stinger() {
-        ejector = new MercTalonSRX(CAN.HATCH_EJECTOR);
+        ejector = new MercTalonSRX(RobotMap.CAN.HATCH_EJECTOR);
 
         ejector.resetEncoder();
 

@@ -13,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.FollowerType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrain.DriveTrainSide;
 import frc.robot.util.MercMath;
 import frc.robot.util.interfaces.IMercMotorController;
 import org.apache.logging.log4j.LogManager;
@@ -80,7 +79,7 @@ public class MoveHeading extends Command {
 
         right.configAuxPIDPolarity(true);
 
-        Robot.driveTrain.configPIDSlots(DriveTrainSide.RIGHT, DriveTrain.DRIVE_PID_SLOT, DriveTrain.DRIVE_SMOOTH_MOTION_SLOT);
+        Robot.driveTrain.configPIDSlots(DriveTrain.DriveTrainSide.RIGHT, DriveTrain.DRIVE_PID_SLOT, DriveTrain.DRIVE_SMOOTH_MOTION_SLOT);
 
         Robot.driveTrain.resetPigeonYaw();
 

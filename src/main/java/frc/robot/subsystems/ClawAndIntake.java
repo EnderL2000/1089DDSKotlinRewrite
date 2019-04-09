@@ -3,10 +3,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.CANifier;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.RobotMap.CAN;
-import frc.robot.commands.cargo.RunClaw;
-import frc.robot.sensors.LIDAR;
+import frc.robot.RobotMap;
 import frc.robot.util.MercVictorSPX;
+import frc.robot.sensors.LIDAR;
 
 public class ClawAndIntake extends Subsystem {
 
@@ -18,9 +17,9 @@ public class ClawAndIntake extends Subsystem {
     private LIDAR lidar;
 
     public ClawAndIntake() {
-        clawLeft = new MercVictorSPX(CAN.CLAW_LEFT);
-        clawRight = new MercVictorSPX(CAN.CLAW_RIGHT);
-        mouthIntaker = new MercVictorSPX(CAN.MOUTH_INTAKE);
+        clawLeft = new MercVictorSPX(RobotMap.CAN.CLAW_LEFT);
+        clawRight = new MercVictorSPX(RobotMap.CAN.CLAW_RIGHT);
+        mouthIntaker = new MercVictorSPX(RobotMap.CAN.MOUTH_INTAKE);
 
         clawLeft.setInverted(true);
         clawRight.setInverted(false);
@@ -35,7 +34,7 @@ public class ClawAndIntake extends Subsystem {
         //setDefaultCommand(new RunClaw(ClawState.IDLE));
     }
 
-    public frc.robot.sensors.LIDAR getLidar() {
+    public LIDAR getLidar() {
         return lidar;
     }
 

@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrain.DriveTrainSide;
-import frc.robot.util.DriveAssist.DriveDirection;
+import frc.robot.util.DriveAssist;
 import frc.robot.util.MercMath;
 import frc.robot.util.MercTalonSRX;
 import org.apache.commons.csv.CSVFormat;
@@ -73,11 +72,11 @@ public class MoveOnPath extends Command {
         name = filename;
 
         try {
-            if (Robot.driveTrain.getDirection() == DriveDirection.CARGO) {
+            if (Robot.driveTrain.getDirection() == DriveAssist.DriveDirection.CARGO) {
                 dir = -1;
                 leftTrajCSV = new FileReader("/home/lvuser/deploy/trajectories/PathWeaver/output/" + filename + ".right.pf1.csv");
                 rightTrajCSV = new FileReader("/home/lvuser/deploy/trajectories/PathWeaver/output/" + filename + ".left.pf1.csv");
-            } else if (Robot.driveTrain.getDirection() == DriveDirection.HATCH) {
+            } else if (Robot.driveTrain.getDirection() == DriveAssist.DriveDirection.HATCH) {
                 dir = 1;
                 leftTrajCSV = new FileReader("/home/lvuser/deploy/trajectories/PathWeaver/output/" + filename + ".right.pf1.csv");
                 rightTrajCSV = new FileReader("/home/lvuser/deploy/trajectories/PathWeaver/output/" + filename + ".left.pf1.csv");
@@ -125,10 +124,10 @@ public class MoveOnPath extends Command {
         // Reset command state
         reset();
 
-        dir = Robot.driveTrain.getDirection() == DriveDirection.HATCH ? 1 : -1;
+        dir = Robot.driveTrain.getDirection() == DriveAssist.DriveDirection.HATCH ? 1 : -1;
 
-        Robot.driveTrain.configPIDSlots(DriveTrainSide.LEFT, DriveTrain.DRIVE_MOTION_PROFILE_SLOT, DriveTrain.DRIVE_SMOOTH_MOTION_SLOT);
-        Robot.driveTrain.configPIDSlots(DriveTrainSide.RIGHT, DriveTrain.DRIVE_MOTION_PROFILE_SLOT, DriveTrain.DRIVE_SMOOTH_MOTION_SLOT);
+        Robot.driveTrain.configPIDSlots(DriveTrain.DriveTrainSide.LEFT, DriveTrain.DRIVE_MOTION_PROFILE_SLOT, DriveTrain.DRIVE_SMOOTH_MOTION_SLOT);
+        Robot.driveTrain.configPIDSlots(DriveTrain.DriveTrainSide.RIGHT, DriveTrain.DRIVE_MOTION_PROFILE_SLOT, DriveTrain.DRIVE_SMOOTH_MOTION_SLOT);
 
         // Change motion control frame period
         left.changeMotionControlFramePeriod(10);

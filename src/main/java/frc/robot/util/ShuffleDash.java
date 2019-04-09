@@ -4,7 +4,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.util.interfaces.IMercMotorController.LimitSwitchDirection;
+import frc.robot.util.interfaces.IMercMotorController;
 
 public class ShuffleDash {
 
@@ -57,14 +57,14 @@ public class ShuffleDash {
 
         SmartDashboard.putData("Sandstorm First Step", sandstormFirstStep);
 
-        SmartDashboard.putBoolean("Elevator Limit Switch Closed", Robot.elevator.getElevatorLeader().isLimitSwitchClosed(LimitSwitchDirection.REVERSE));
+        SmartDashboard.putBoolean("Elevator Limit Switch Closed", Robot.elevator.getElevatorLeader().isLimitSwitchClosed(IMercMotorController.LimitSwitchDirection.REVERSE));
 
         SmartDashboard.putNumber("Elevator enc", Robot.elevator.getElevatorLeader().getEncTicks());
         SmartDashboard.putNumber("Hatch pos", Robot.stinger.getEjector().getEncTicks());
 
         SmartDashboard.putNumber("Fangs Enc", Robot.fangs.getArticulator().getEncTicks());
 
-        SmartDashboard.putBoolean("Rev Fangs limit", Robot.fangs.getArticulator().isLimitSwitchClosed(LimitSwitchDirection.REVERSE));
+        SmartDashboard.putBoolean("Rev Fangs limit", Robot.fangs.getArticulator().isLimitSwitchClosed(IMercMotorController.LimitSwitchDirection.REVERSE));
 
         //SmartDashboard.putBoolean("Auton Initialized", ntInstance.getTable("AutonConfiguration").containsKey("startingPosition"));
 

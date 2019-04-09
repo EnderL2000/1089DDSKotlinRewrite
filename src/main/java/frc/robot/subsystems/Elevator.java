@@ -5,11 +5,10 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.CAN;
-import frc.robot.commands.elevator.HoldPosition;
 import frc.robot.util.MercMath;
 import frc.robot.util.MercTalonSRX;
 import frc.robot.util.PIDGain;
+import frc.robot.commands.elevator.HoldPosition;
 import frc.robot.util.interfaces.IMercMotorController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +24,7 @@ public class Elevator extends Subsystem {
     private IMercMotorController elevatorLeader;
 
     public Elevator() {
-        elevatorLeader = new MercTalonSRX(CAN.ELEVATOR_TALON);
+        elevatorLeader = new MercTalonSRX(RobotMap.CAN.ELEVATOR_TALON);
         elevatorLeader.setNeutralMode(NeutralMode.Brake);
 
         elevatorLeader.configMotionAcceleration((int)(MercMath.revsPerMinuteToTicksPerTenth(9000)));

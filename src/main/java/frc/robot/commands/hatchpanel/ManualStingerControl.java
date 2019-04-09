@@ -2,8 +2,7 @@ package frc.robot.commands.hatchpanel;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.subsystems.Stinger.StingerState;
+import frc.robot.subsystems.Stinger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,8 +22,8 @@ public class ManualStingerControl extends Command {
 
     @Override
     protected void execute() {
-        //Robot.stinger.getEjector().setSpeed(Robot.oi.getGamepadAxis(RobotMap.GAMEPAD_AXIS.leftY));
-        Robot.stinger.setState(StingerState.EJECTING);
+        //Robot.ejector.getEjector().setSpeed(Robot.oi.getGamepadAxis(RobotMap.GAMEPAD_AXIS.leftY));
+        Robot.stinger.setState(Stinger.StingerState.EJECTING);
         LOG.info(getName() + " Executed");
     }
 
@@ -35,7 +34,7 @@ public class ManualStingerControl extends Command {
 
     @Override
     protected void end() {
-        Robot.stinger.setState(StingerState.IDLE);
+        Robot.stinger.setState(Stinger.StingerState.IDLE);
         LOG.info(getName() + " Ended");
     }
 

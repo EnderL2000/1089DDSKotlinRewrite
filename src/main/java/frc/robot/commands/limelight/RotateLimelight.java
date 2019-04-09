@@ -2,7 +2,7 @@ package frc.robot.commands.limelight;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LimelightAssembly.LimelightPosition;
+import frc.robot.subsystems.LimelightAssembly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 public class RotateLimelight extends Command {
 
     private final Logger LOG = LogManager.getLogger(RotateLimelight.class);
-    private LimelightPosition limePos;
+    private LimelightAssembly.LimelightPosition limePos;
     private double position;
 
     /**
@@ -36,7 +36,7 @@ public class RotateLimelight extends Command {
      *
      * @param pos The preset position to rotate the limight to
      */
-    public RotateLimelight(LimelightPosition pos) {
+    public RotateLimelight(LimelightAssembly.LimelightPosition pos) {
         this(pos.servoPosition);
         limePos = pos;
     }

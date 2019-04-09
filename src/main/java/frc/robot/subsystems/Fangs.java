@@ -3,8 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.ParamEnum;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.climber.ArticulateFangs;
-import frc.robot.commands.climber.ManualFangsControl;
 import frc.robot.util.MercTalonSRX;
 import frc.robot.util.PIDGain;
 import frc.robot.util.interfaces.IMercMotorController;

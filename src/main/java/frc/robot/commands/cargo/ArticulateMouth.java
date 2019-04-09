@@ -2,7 +2,7 @@ package frc.robot.commands.cargo;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.MouthArticulator.MouthPosition;
+import frc.robot.subsystems.MouthArticulator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,11 +10,11 @@ import org.apache.logging.log4j.Logger;
 public class ArticulateMouth extends Command {
 
     private final Logger LOG = LogManager.getLogger(ArticulateMouth.class);
-    private MouthPosition position;
+    private MouthArticulator.MouthPosition position;
     private long startTime;
     private final static long timeout = 500L;
 
-    public ArticulateMouth(MouthPosition position) {
+    public ArticulateMouth(MouthArticulator.MouthPosition position) {
         requires(Robot.mouthArticulator);
         setName("ArticulateMouth Command");
         LOG.info(getName() + " Constructed");

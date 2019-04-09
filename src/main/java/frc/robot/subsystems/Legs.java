@@ -2,8 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap.CAN;
-import frc.robot.RobotMap.PCM;
+import frc.robot.RobotMap;
 
 public class Legs extends Subsystem {
   private DoubleSolenoid legs;
@@ -11,7 +10,7 @@ public class Legs extends Subsystem {
 
   public Legs(){
     isInLiftMode = false;
-    legs = new DoubleSolenoid(CAN.PCM, PCM.HAB_ACTUATE, PCM.HAB_RETRACT);
+    legs = new DoubleSolenoid(RobotMap.CAN.PCM, RobotMap.PCM.HAB_ACTUATE, RobotMap.PCM.HAB_RETRACT);
   }
 
   @Override
