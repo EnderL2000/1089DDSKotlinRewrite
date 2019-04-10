@@ -4,11 +4,11 @@ import com.ctre.phoenix.CANifier
 import edu.wpi.first.wpilibj.PIDSource
 import edu.wpi.first.wpilibj.PIDSourceType
 import edu.wpi.first.wpilibj.filters.LinearDigitalFilter
-import frc.robot.util.MercMath
+import ktfrc.robot.util.centimetersToInches
 
-class LIDAR(val cfier: CANifier,
-            val channel: CANifier.PWMChannel = CANifier.PWMChannel.PWMChannel0,
-            val offset: LidarPWMOffset = LidarPWMOffset.DEFAULT): PIDSource {
+class LIDAR(private val cfier: CANifier,
+            private val channel: CANifier.PWMChannel = CANifier.PWMChannel.PWMChannel0,
+            private val offset: LidarPWMOffset = LidarPWMOffset.DEFAULT): PIDSource {
 
     private var pwmInput = doubleArrayOf()
     private var linearDigitalFilter = LinearDigitalFilter.movingAverage(this, 5)
@@ -22,20 +22,15 @@ class LIDAR(val cfier: CANifier,
     @Synchronized
     fun getRawDistance(): Double {
         val centimeters = pwmInput[0] / 10.0
-        return MercMath.centimetersToInches(centimeters)
+        return centimetersToInches(centimeters)
     }
 
     @Synchronized
     fun getDistance(): Double = linearDigitalFilter.pidGet()
 
-    @Synchronized
-    fun getPeriod(): Double = pwmInput[1]
-
     override fun getPIDSourceType(): PIDSourceType = PIDSourceType.kDisplacement
 
-    override fun setPIDSourceType(pidSource: PIDSourceType?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun setPIDSourceType(pidSource: PIDSourceType?) {}
 }
 
 enum class LidarPWMOffset(private val constant: Double, private val coefficient: Double) {

@@ -5,7 +5,7 @@ import ktfrc.robot.Robot
 import ktfrc.robot.subsystems.FangsPosition
 import org.apache.logging.log4j.LogManager
 
-class ArticulateFangs(val targetPosition: FangsPosition, val endable: Boolean = false): Command() {
+class ArticulateFangs(private val targetPosition: FangsPosition, private val endable: Boolean = false): Command() {
 
     init {
         requires(Robot.fangs)

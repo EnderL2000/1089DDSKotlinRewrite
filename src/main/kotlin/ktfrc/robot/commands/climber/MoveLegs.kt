@@ -6,7 +6,7 @@ import ktfrc.robot.subsystems.LegsPosition
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-class MoveLegs(val targetPosition: LegsPosition): Command() {
+class MoveLegs(private val targetPosition: LegsPosition): Command() {
 
     init {
         requires(Robot.legs)

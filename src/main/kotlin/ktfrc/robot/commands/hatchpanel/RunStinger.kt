@@ -6,7 +6,7 @@ import ktfrc.robot.subsystems.Stinger
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-class RunStinger(val targetPosition: Int = 4096 * 20): Command() {
+class RunStinger(private val targetPosition: Int = 4096 * 20): Command() {
 
     private var onTargetCount: Int = 0
 

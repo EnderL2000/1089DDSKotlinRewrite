@@ -10,7 +10,7 @@ import ktfrc.robot.subsystems.ElevatorPosition
  * Elevator is SAFE if: Elevator is currently below the danger line and it wants to go above the danger line
  * Otherwise, elevator is UNSAFE
  */
-class SmartElevatorUp(val targetPosition: ElevatorPosition):
+class SmartElevatorUp(private val targetPosition: ElevatorPosition):
         ConditionalCommand(SafeElevatorUp(targetPosition), AutomaticElevator(targetPosition)) {
 
     public override fun condition(): Boolean =

@@ -7,7 +7,7 @@ import ktfrc.robot.subsystems.MouthArticulatorPosition
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-class ArticulateMouth(val targetPosition: MouthArticulatorPosition): Command() {
+class ArticulateMouth(private val targetPosition: MouthArticulatorPosition): Command() {
 
     var startTime = 0L
 

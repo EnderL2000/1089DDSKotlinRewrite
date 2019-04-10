@@ -7,10 +7,7 @@ import edu.wpi.first.wpilibj.PIDSourceType
 /**
  * A wrapper class for limelight information from the network table.
  */
-class Limelight : PIDSource, TableEntryListener {
-    private val safeTurnThreshold = 10.0
-    private val limelightResX = 320.0
-
+class Limelight: PIDSource, TableEntryListener {
     /*
      * Coefficients and exponents to help find the distance of a target
      * Each equation is in the form ax^b where a is the coefficient
@@ -21,14 +18,10 @@ class Limelight : PIDSource, TableEntryListener {
     //TODO Move to companion obj v
     private val vertCoeff = 111.0
     private val vertExp = -0.948
-    private val horizCoeff = 264.0
-    private val horizExp = -0.953
-    private val areaCoeff = 6.64
-    private val areaExp = -0.466
     private val nt = NetworkTableInstance.getDefault().getTable("limelight-merc")
 
     @get:Synchronized
-    var numTargets: Double = 0.0
+    var numTargets: Double = nt.getEntry("tv").getDouble(0.0)
         private set
 
     @get:Synchronized
@@ -59,27 +52,8 @@ class Limelight : PIDSource, TableEntryListener {
     var targetAcquired: Boolean = false
         private set
 
-
-    val rawAreaDistance: Double
-        @Synchronized get() = calcDistFromArea()
-
     val rawVertDistance: Double
         @Synchronized get() = calcDistFromVert()
-
-
-    val rawHorizDistance: Double
-        @Synchronized get() = calcDistFromHoriz()
-
-    val isSafeToTrack: Boolean
-        @Synchronized get() {
-            for (corner in this.cornerXArray) {
-                if (corner >= limelightResX - safeTurnThreshold || corner <= safeTurnThreshold) {
-                    println("not safe, turning!")
-                    return false
-                }
-            }
-            return true
-        }
 
     init {
         numTargets = nt.getEntry("tv").getDouble(0.0)
@@ -122,9 +96,7 @@ class Limelight : PIDSource, TableEntryListener {
      * Set the PID Source (should not be implemented)
      */
     @Synchronized
-    override fun setPIDSourceType(pidST: PIDSourceType) {
-
-    }
+    override fun setPIDSourceType(pidST: PIDSourceType) {}
 
     /**
      * Get the value that PID acts on. For PIDCommand
@@ -133,25 +105,11 @@ class Limelight : PIDSource, TableEntryListener {
     override fun pidGet(): Double = this.targetCenterXAngle
 
     /**
-     * Helper method for the area-dist calculation
-     *
-     * @return the distance based on area
-     */
-    private fun calcDistFromArea(): Double = areaCoeff * Math.pow(targetArea, areaExp) * 12.0
-
-    /**
      * Helper method for the vert-dist calculation
      *
      * @return the distance based on vertical distance
      */
     private fun calcDistFromVert(): Double = vertCoeff * Math.pow(verticalLength, vertExp) * 12.0
-
-    /**
-     * Helper method for the horiz-dist calculation
-     *
-     * @return the distance based on horizontal distance
-     */
-    private fun calcDistFromHoriz(): Double = horizCoeff * Math.pow(horizontalLength, horizExp) * 12.0
 
     /**
      * Set the LED state on the limelight.

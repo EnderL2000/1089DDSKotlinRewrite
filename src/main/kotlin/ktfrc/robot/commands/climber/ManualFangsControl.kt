@@ -16,7 +16,7 @@ class ManualFangsControl: Command() {
     }
 
     override fun execute() {
-        frc.robot.Robot.fangs.articulator.speed = applyDeadzone(frc.robot.Robot.oi.getGamepadAxis(RobotMap.GAMEPAD_AXIS.leftY), 0.1)
+        Robot.fangs.articulator.setSpeed(applyDeadzone(Robot.oi.getGamepadAxis(RobotMap.GAMEPAD_AXIS.leftY), 0.1))
         LOG?.info("$name Executed")
     }
 

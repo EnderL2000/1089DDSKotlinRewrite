@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command
 import ktfrc.robot.Robot
 import ktfrc.robot.sensors.LimelightLEDState
 
-class SetLED(val targetState: LimelightLEDState): Command() {
+class SetLED(private val targetState: LimelightLEDState): Command() {
 
     init {
         requires(Robot.limelightAssembly)
